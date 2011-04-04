@@ -263,6 +263,11 @@ def op_build (pkg_build, package, pkg_name, debug):
                 download_copy    = down_entry.get('copy')
                 download_patches = down_entry.get('patches')
 
+                # Pre-requisite
+                cache_dir = os.path.join (BASEDIR, 'download-cache')
+                if not os.path.exists (cache_dir):
+                    os.makedirs (cache_dir)
+
                 # Download
                 file_download = download_url.split('/')[-1]
                 file_in_cache = os.path.join (BASEDIR, 'download-cache', file_download)
