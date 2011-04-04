@@ -1,0 +1,20 @@
+--- silverstripe-v2.4.4.work/sapphire/dev/install/config-form.html.orig	2011-01-14 19:35:36.000000000 +0100
++++ silverstripe-v2.4.4.work/sapphire/dev/install/config-form.html	2011-01-14 19:39:42.000000000 +0100
+@@ -75,6 +75,8 @@
+ 							<div class="action">
+ 								<input type="submit" class="action" value="Re-check requirements">
+ 							</div>
++
++<div style="display:none;"><!- Cherokee Market: the DB is already configured -->
+ 							
+ 							<h4 class="sectionHeading"><em class="inlineBarText">Database</em> <span>Step: 2 of 5</span></h4>
+ 							<div id="database_credentials" class="section">
+@@ -187,7 +189,7 @@
+ 									</div>
+ 								</div>
+ 							</div>
+-							
++</div><!-- Cherokee Market -->							
+ 							<div class="clear"><!-- --></div>
+ 							
+ 							<h4><em class="inlineBarText">CMS Admin Account</em> <span>Step: 3 of 5</span></h4>

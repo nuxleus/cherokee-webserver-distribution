@@ -1,0 +1,26 @@
+--- silverstripe-v2.4.3/install.php.orig	2010-11-18 19:03:09.227958161 +0100
++++ silverstripe-v2.4.3/install.php	2010-11-18 19:05:15.947958403 +0100
+@@ -294,6 +294,14 @@
+ 		}
+ 	}
+ 
++	function isCherokee() {
++		if(strpos($this->findWebserver(), 'Cherokee') !== false) {
++			return true;
++		} else {
++			return false;
++		}
++	}
++
+ 	/**
+ 	 * Find the webserver software running on the PHP host.
+ 	 * @return string|boolean Server software or boolean FALSE
+@@ -346,6 +354,8 @@
+ 			$this->requireApacheRewriteModule('mod_rewrite', array("Webserver Configuration", "URL rewriting support", "You need mod_rewrite to use friendly URLs with SilverStripe, but it is not enabled."));
+ 		} elseif($isIIS) {
+ 			$this->requireIISRewriteModule('IIS_UrlRewriteModule', array("Webserver Configuration", "URL rewriting support", "You need to enable the IIS URL Rewrite Module to use friendly URLs with SilverStripe, but it is not installed or enabled. Download it for IIS 7 from http://www.iis.net/expand/URLRewrite"));
++		} elseif($this->isCherokee()) {
++			/* Nothing to check. Cherokee is good */
+ 		} else {
+ 			$this->warning(array("Webserver Configuration", "URL rewriting support", "I can't tell whether any rewriting module is running.  You may need to configure a rewriting rule yourself."));
+ 		}

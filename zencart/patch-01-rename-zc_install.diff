@@ -1,0 +1,26 @@
+--- zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/languages/english/finished.php.orig	2010-10-07 17:01:20.119443344 +0200
++++ zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/languages/english/finished.php	2010-10-07 17:05:39.236403253 +0200
+@@ -11,8 +11,8 @@
+  * defining language components for the page
+  */
+   define('TEXT_MAIN',"<h2>Congratulations!</h2><h3>You have successfully installed Zen Cart&trade; on your system!</h3>
+-<h2>NEXT STEPS</h2>For security, you will need to reset your <strong>configure.php</strong> files located in the <strong>/admin/includes/</strong> and <strong>/includes/</strong> folders back to read-only mode before allowing people to access your store.<br /><br />
+-Additionally, you'll want to remove or rename the <strong>/zc_install</strong> folder so that someone can't re-install your shop again and wipe out your database!  Warnings will appear until the folder has been removed or renamed.
++<h2>NEXT STEPS</h2>For security, the installer has reset your <strong>configure.php</strong> files located in the <strong>/admin/includes/</strong> and <strong>/includes/</strong> folders back to read-only mode before allowing people to access your store.<br /><br />
++Additionally, the <strong>/zc_install</strong> folder has been renamed so that nobody can re-install your shop again and wipe out your database!.
+ <h2>DONATE</h2>You can show your appreciation for our free software, and can support future development by making a donation to the Zen Cart project: <a href=\"http://www.zen-cart.com/donate\">Make a donation of any size by clicking here. Thanks in advance!</a>
+ <h2>CONFIGURATION</h2>We encourage you to begin by <a href=\"http://tutorials.zen-cart.com\"><strong>reading the FAQ's</strong> in our online support forums</a> for useful information to assist with configuring and customizing your online shop the way you wish it to look and operate. <br />
+ If you have questions, this is the first place to look! If you're stumped, feel free to post a question! We have a helpful, friendly, knowledgeable community who welcomes you.<br /><br />
+--- zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/modules/pages/finished/header_php.php.orig	2010-10-07 17:52:46.091445789 +0200
++++ zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/modules/pages/finished/header_php.php	2010-10-07 18:00:35.763408711 +0200
+@@ -9,4 +9,8 @@
+  */
+ 
+   require_once('../includes/configure.php');
+-?>
+\ 
++
++  $dirname = str_replace('//','/',dirname(__FILE__).'/../../../../..');
++  exec ("( sleep 2 && mv $dirname/zc_install $dirname/zc_install.moved_by_market_installer > /dev/null 2>&1 ) & ");
++  exec ("( chmod 440 $dirname/includes/configure.php $dirname/admin/includes/configure.php > /dev/null 2>&1 ) & ");
++?>

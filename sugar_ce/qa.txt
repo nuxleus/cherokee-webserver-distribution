@@ -1,0 +1,34 @@
+* Make installation as VServer.
+** Ensure the installation checks can proceed. (They won't if there are permission issues)
+** Ensure /emaildelivery.php is not accessible.
+** Ensure logfiles are not accessible: /logfile.log (should properly redirect to an html to that effect).
+** Ensure all PHP file requests other than those on root directory are redirected to /index.php
+** Everything is dispatched from /index.php, so no problems with module accessibility can be foreseen.
+
+* Make installation as Directory.
+** Perform same tests
+
+NOTES
+-----
+Languages provided by default: English, Japanese, French, Chinese
+
+Requirements (checked during installation)
+    * PHP version – must be compatible with the application
+    * Session Variables – must be working properly
+    * MB Strings – must be installed and enabled in php.ini
+    * Database Support – must exist for MySQL, SQL Server or Oracle
+    * Config.php – must exist and must have the appropriate permissions to make it writeable
+    * The following Sugar files must be writeable:
+          o /custom
+          o /cache
+          o /modules
+          o /data
+
+Warnings we could deal with:
+Warning:
+	Upload File Size: Your PHP configuration should be changed to allow files of at least 6MB to be uploaded.
+
+Crontab warning:
+	Note: In order to run Sugar Schedulers, add the following line to the crontab file:
+	*    *    *    *    *     cd /var/lib/cherokee/ows/root/1285064056.12/sugar; php -f cron.php > /dev/null 2>&1
+

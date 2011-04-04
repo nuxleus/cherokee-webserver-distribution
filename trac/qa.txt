@@ -1,0 +1,41 @@
+* Make installation as VServer.
+** Ensure installation proceeds without warnings.
+** Ensure trac, project, ez_setup and usr are created inside ${app_root}
+** Ensure login link works (/login)
+** Ensure attachments work (edit any page and add attachment to check)
+** If above checks are OK, we're done.
+
+* Make installation as Directory.
+** Perform same tests.
+
+NOTES
+-----
+Requirements:
+ * Python, version >= 2.4.
+ * setuptools, version >= 0.6
+ * Genshi, version >= 0.6
+ * Optionally, Subversion, version >= 1.1.x and the Subversion SWIG
+   Python bindings (not PySVN, that's something different).
+ * One of the following Python bindings, depending on the database used:
+    * pysqlite version 2.x for SQLite 3.x (is part of the standard
+      library starting with Python 2.5)
+    * psycopg2 version 2.0.x for the PostgreSQL database
+    * MySQLdb, version 1.2.2 for the MySQL database
+ * A web server capable of executing CGI/FastCGI scripts, or Apache
+   HTTPD with mod_python or mod_wsgi. (Trac also comes with a
+   standalone server, tracd)
+
+trac-admin queries for;
+  project-name: [My Project]
+  sql-connection-string (pysqlite by default)
+
+trac.ini must be edited: look for
+ (please configure the [header_logo] section in trac.ini)
+
+Installation step takes time. We need to make an intermediate step to avoid re-submissions.
+
+
+About Sqlite3 and FreeBSD:
+Installing the Python dependency for the default Python2.6 interpreter
+has been chosen as approach. pysqlite needs sqlite3 installed to build
+*BUT* can't find the path to /usr/local/include/sqlite3.h on its own.

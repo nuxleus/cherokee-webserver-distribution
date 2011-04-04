@@ -1,0 +1,20 @@
+* Make installation as VServer.
+** Ensure it can boot up on demand (takes a couple of minutes)
+** Ensure menues can be accessed normally and no images/css are unreachable due to the proxy setting.
+* Make installation as Directory.
+** Perform same tests.
+
+NOTES
+-----
+cd /{directory}/magnolia-{version}/tomcat-{version}/bin
+./magnolia-control.sh start
+
+Takes minutes to load.
+
+* If infinite-redirection appears, make sure to clean the cookies for
+  the domain. It could be a problem from a previous installation.
+
+
+Currently, Magnolia 4.3.7 needs to update core components that make
+some parts inaccessible if portnumber is low. Changing it seemed to
+allow the upgrade and to work.

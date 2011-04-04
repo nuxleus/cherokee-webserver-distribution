@@ -1,0 +1,28 @@
+* Make installation as VServer.
+** Check permissions: ensure installer can proceed without notice (see
+   notes about permissions).
+** Ensure all main menues are accessible.
+** Ensure <user_profile> -> "Change my picture" can upload images.
+** Ensure new topics can be created.
+* Make installation as Directory.
+** Make same tests as for VServer
+
+NOTES
+-----
+* PHP version 5.2.0 or newer
+  file_uploads = on
+  PHP Data Objects module
+  PDO_MySQL module must be enabled
+  GD version 2.0 or newer (optional, but required for profile pictures)
+  cURL or Sockets (to allow plugin sandboxing)
+
+* MySQL version 5 or newer
+
+Friendly URLS: when enabled, redirs work as expected, but Vanilla
+doesn't unless we make sure ?p or ?q is used.
+	Example:    http://example.com/profile/picture?DeliveryType=VIEW ->
+	if rewritten as http://example.com/index.php?p=/profile/picture&DeliveryType=VIEW
+
+Beware of the detail: ?p or ?q. It has been changed somewhere among
+the line. If redirs fails, try switching that on the test
+configuration.

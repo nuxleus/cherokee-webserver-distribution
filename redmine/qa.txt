@@ -1,0 +1,154 @@
+* Make installation as VServer.
+** Sign in at /login (admin:admin)
+** Ensure static files are delivered correctly
+** Create new project
+** Create new issue with attached file. Ensure it can be uploaded (so permissions are correct)
+
+* Make installation as Directory.
+** Perform same tests.
+
+
+NOTE
+----
+We have to implement a mechanism that prevents timeouts.
+A full installation with dependencies takes up 112MB, so timeouts *WILL* happen.
+
+STEPS
+-----
+mysql -uroot -p
+      create database redmine character set utf8;
+      grant all privileges on redmine.* to 'redmine'@'localhost' identified by 'my_password';
+      FLUSH PRIVILEGES;
+      exit;
+
+taher@borg:~/src/octality/packages/redmine/redmine-1.0.1/config$ cp database.yml.example database.yml # AND EDIT DETAILS
+
+gem install rails -v=2.3.5
+gem install rack -v=1.0.1
+gem install thin # better than webrick and mongrel
+gem install mysql
+rake generate_session_store
+RAILS_ENV=production rake db:migrate							# sloooooow (first time)
+RAILS_ENV=production rake redmine:load_default_data					# prompts for language, 2letter code. [en]
+
+Permissions:
+-----------
+The user who runs Redmine must have write permission on the following subdirectories: files, log, tmp (create the last one if not present).
+Assuming you run Redmine with a redmine user:
+
+mkdir tmp public/plugin_assets
+sudo chown -R redmine:redmine files log tmp public/plugin_assets
+sudo chmod -R 755 files log tmp public/plugin_assets
+
+Test:
+-----
+ruby script/server webrick -e production
+
+Default user:
+-------------
+admin:admin
+
+NOTES
+-----
+Requirements
+Ruby & Ruby on Rails & Rack
+
+Redmine version			Supported Ruby versions 	Required Rails version 	Required Rack version
+current trunk			ruby 1.8.6, 1.8.7 		Rails 2.3.5 		Rack 1.0.1
+trunk from r2493 to r2886 	ruby 1.8.6, 1.8.7 		Rails 2.2.2
+trunk before r2493 		ruby 1.8.6, 1.8.7 		Rails 2.1.2
+1.0.x 				ruby 1.8.6, 1.8.7 		Rails 2.3.5 		Rack 1.0.1
+0.9.x 				ruby 1.8.6, 1.8.7 		Rails 2.3.5 		Rack 1.0.1
+0.8.x 				ruby 1.8.6, 1.8.7 		Rails 2.1.2
+
+Official releases include the appropriate Rails version in their vendor directory. So no particular action is needed.
+If you checkout the source from the Redmine repository, you can install a specific Rails version on your machine by running:
+
+gem install rails -v=2.3.5
+
+Install Rack:
+
+gem install rack -v=1.0.1
+
+Notes:
+    * Ruby 1.9 is not supported yet. You have to use Ruby 1.8.x as stated above.
+    * RubyGems 1.3.1 or higher is required
+    * Rake 0.8.3 or higher is required
+    * Rack 1.0.1 is required. If you don't have this exact version, database migration would fail.
+
+Database
+    * MySQL 5.0 or higher (recommended)
+          o make sure to install the C bindings for Ruby that
+            dramatically improve performance. You can get them by
+            running gem install mysql. The gem requires Ruby 1.8.6
+
+    * PostgreSQL 8
+
+          o make sure your database datestyle is set to ISO
+            (Postgresql default setting). You can set it using: ALTER
+            DATABASE "redmine_db" SET datestyle="ISO,MDY";
+
+          o some bugs in PostgreSQL 8.4.0 and 8.4.1 affect Redmine
+            behaviour (#4259, #4314), they are fixed in PostgreSQL 8.4.2
+
+          o make sure to install the PosgreSQL adapter for Ruby. You
+            can get it by running (one of the following):
+                + gem install postgres-pr
+                + gem install pg (works with SSL connections, may need development libraries/packages for your OS before it will compile)
+                      # Ubuntu OS: development libraries can be installed with (or similiar): sudo aptitude install libdbd-pg-ruby1.8
+
+    * SQLite 3: The sqlite3 gem requires ruby 1.8.7 minimum.
+
+Optional components
+
+    * SCM binaries (eg. svn), for repository browsing (must be
+      available in your PATH). See RedmineRepositories for SCM
+      compatibility and requirements.
+    * RMagick (to enable Gantt export to png image)
+    * Ruby OpenID Library (to enable OpenID support) [only on Redmine
+      trunk / 0.9-dev] Version 2 or greater is required.
+
+
+Notes on local GEM installations:
+ENV['GEM_HOME']='/usr/lib/ruby/gems/1.8'
+ENV['GEM_PATH']='/home/ckh/gems'
+in dispatch.fcgi
+
+GEM_HOME is for the system gems and my gems are in GEM_PATH. GEM_HOME
+probably does not need to be specified since it is already set.
+
+
+
+TROUBLESHOOTING:
+---------------
+COMMAND: gem install mysql
+ERROR """
+mysql gem cannot be installed
+"""
+SOLUTION: apt-get install ruby1.8-dev
+
+
+COMMAND: RAILS_ENV=production rake db:migrate
+ERROR_MSG="""
+Rake aborted!
+no such file to load -- net/https
+"""
+SOLUTION: apt-get install libopenssl-ruby1.8
+
+
+Be *VERY* careful with Ruby version, and with mixed installations. I
+had a local ruby1.9.2 and it was 'almost' working.
+
+
+To work as DIR installation:
+Add:
+	Redmine::Utils::relative_url_root = "/redmine"
+to config/environment.rb or additional_environment.rb
+
+
+PRO/ENTERPRISE:
+--------------
+Could add or enable optional components.
+* SCM binaries (e.g. svn), for repository browsing (must be available in PATH)
+* RMagick (to enable Gantt export to png images)
+* Ruby OpenID Library >= version 2 (to enable OpenID support)

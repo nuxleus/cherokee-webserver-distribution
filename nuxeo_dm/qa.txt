@@ -1,0 +1,15 @@
+* Make installation as VServer.
+** Ensure it can boot up on demand (takes a couple of minutes)
+** Ensure menues can be accessed normally and no images/css are unreachable due to the proxy setting.
+* Make installation as Directory.
+** Perform same tests.
+
+NOTES
+-----
+Prerequisites
+    * Java 6 or later.
+
+BIG Caveout: The deployment path '/nuxeo' is hardcoded in many places.
+
+* If infinite-redirection appears, make sure to clean the cookies for
+  the domain. It could be a problem from a previous installation.

@@ -1,0 +1,56 @@
+*** joomla/installation/views/complete/tmpl/default.php.orig	2011-02-14 12:56:03.681582686 +0100
+--- joomla/installation/views/complete/tmpl/default.php	2011-02-14 12:55:19.913638005 +0100
+***************
+*** 47,57 ****
+  			<div class="m">
+  				<div class="far-right">
+  <?php if ($this->document->direction == 'ltr') : ?>
+! 					<div class="button1-left"><div class="site"><a href="<?php echo JURI::root(); ?>" title="<?php echo JText::_('JSITE'); ?>"><?php echo JText::_('JSITE'); ?></a></div></div>
+  					<div class="button1-left"><div class="admin"><a href="<?php echo JURI::root(); ?>administrator/" title="<?php echo JText::_('JADMINISTRATOR'); ?>"><?php echo JText::_('JADMINISTRATOR'); ?></a></div></div>
+  <?php elseif ($this->document->direction == 'rtl') : ?>
+  					<div class="button1-left"><div class="admin"><a href="<?php echo JURI::root(); ?>administrator/" title="<?php echo JText::_('JADMINISTRATOR'); ?>"><?php echo JText::_('JADMINISTRATOR'); ?></a></div></div>
+! 					<div class="button1-left"><div class="site"><a href="<?php echo JURI::root(); ?>" title="<?php echo JText::_('JSITE'); ?>"><?php echo JText::_('JSITE'); ?></a></div></div>
+  <?php endif; ?>
+  				</div>
+  				<span class="step"><?php echo JText::_('INSTL_COMPLETE'); ?></span>
+--- 47,57 ----
+  			<div class="m">
+  				<div class="far-right">
+  <?php if ($this->document->direction == 'ltr') : ?>
+! 					<div class="button1-left" style="display:none;"><div class="site"><a href="<?php echo JURI::root(); ?>" title="<?php echo JText::_('JSITE'); ?>"><?php echo JText::_('JSITE'); ?></a></div></div>
+  					<div class="button1-left"><div class="admin"><a href="<?php echo JURI::root(); ?>administrator/" title="<?php echo JText::_('JADMINISTRATOR'); ?>"><?php echo JText::_('JADMINISTRATOR'); ?></a></div></div>
+  <?php elseif ($this->document->direction == 'rtl') : ?>
+  					<div class="button1-left"><div class="admin"><a href="<?php echo JURI::root(); ?>administrator/" title="<?php echo JText::_('JADMINISTRATOR'); ?>"><?php echo JText::_('JADMINISTRATOR'); ?></a></div></div>
+! 					<div class="button1-left" style="display:none;"><div class="site"><a href="<?php echo JURI::root(); ?>" title="<?php echo JText::_('JSITE'); ?>"><?php echo JText::_('JSITE'); ?></a></div></div>
+  <?php endif; ?>
+  				</div>
+  				<span class="step"><?php echo JText::_('INSTL_COMPLETE'); ?></span>
+***************
+*** 86,92 ****
+  							<table class="final-table">
+  								<tr>
+  									<td class="error">
+! 										<?php echo JText::_('INSTL_COMPLETE_REMOVE_INSTALLATION'); ?>
+  									</td>
+  								</tr>
+  								<tr>
+--- 86,92 ----
+  							<table class="final-table">
+  								<tr>
+  									<td class="error">
+! 										<?php /* echo JText::_('INSTL_COMPLETE_REMOVE_INSTALLATION'); // Cherokee Market removal */ ?>
+  									</td>
+  								</tr>
+  								<tr>
+***************
+*** 161,163 ****
+--- 161,169 ----
+  </div>
+  <div class="clr"></div>
+  </form>
++ 
++ <?php
++ // Cherokee Market Installdir removal
++ $dirname = str_replace('//','/',dirname(__FILE__).'/../../../../installation/');
++ exec ('( sleep 2 && rm -rf ' . $dirname . '> /dev/null 2>&1 ) & ');
++ ?>

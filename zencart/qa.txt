@@ -1,0 +1,72 @@
+* Make installation as VServer.
+** Ensure installer has no permission warnings.
+** Ensure admin directory is renamed before installation.
+** Ensure zc_install dir is renamed afterwards.
+* Make installation as Directory.
+** Make same tests as for VServer
+
+NOTES
+-----
+Permission to write:
+    * includes/configure.php = Writeable
+    * admin/includes/configure.php = Writeable
+    * cache = OK
+    * images = OK
+    * includes/languages/english/html_includes = OK
+    * media = OK
+    * pub = OK
+    * admin/backups = OK
+    * admin/images/graphs = OK
+
+
+After installing:
+For security, you will need to reset your configure.php files located in the /admin/includes/ and /includes/ folders back to read-only mode before allowing people to access your store.
+Additionally, you'll want to remove or rename the /zc_install folder so that someone can't re-install your shop again and wipe out your database! Warnings will appear until the folder has been removed or renamed. 
+
+Also, WARNINGS appear and ADMIN section is not accessible until it is renamed:
+
+A - Edit /admin/includes/configure.php
+
+Using your FTP program, download a copy of your /admin/includes/configure.php file to your computer.
+Using a simple text editor like notepad (or better yet, use Notepad++ or TextWrangler), change all instances of admin to your chosen new admin folder-name.
+
+For maximum security, you may want to consider that new folder name should include numbers and a combination of upper and lower case letters. The longer you make this folder's name the more secure it will be.
+
+When editing, make sure you leave all the / (slashes) alone.
+
+Change this section:
+
+ define('DIR_WS_ADMIN', '/admin/');
+ define('DIR_WS_CATALOG', '/');
+ define('DIR_WS_HTTPS_ADMIN', '/admin/');
+ define('DIR_WS_HTTPS_CATALOG', '/');
+
+
+And this section:
+
+ define('DIR_FS_ADMIN', '/home/mystore.com/www/public/admin/');
+ define('DIR_FS_CATALOG', '/home/mystore.com/www/public/');
+
+
+You will end up with something that looks like this:
+
+ define('DIR_WS_ADMIN', '/mysecretadminarea/');
+ define('DIR_WS_CATALOG', '/');
+ define('DIR_WS_HTTPS_ADMIN', '/mysecretadminarea/');
+ define('DIR_WS_HTTPS_CATALOG', '/');
+
+
+And:
+
+ define('DIR_FS_ADMIN', '/home/mystore.com/www/public/mysecretadminarea/');
+ define('DIR_FS_CATALOG', '/home/mystore.com/www/public/');
+
+
+Now, you must upload the changes back to the server, using your FTP program.
+
+IMPORTANT NOTE: Your configure.php file should be set as Read-Only for normal use. So, you'll need to make it Writable before you'll be able to upload/save your changes to the file.  (In *some* cases, your server might require you to DELETE the file from your server before you can upload the edited version to replace it.)
+Be sure to make it Read-Only again when finished.  Often you can right-click the file in your FTP program and change the permissions settings there.  There's another FAQ article on how to change file permissions on different hosting servers.
+
+
+B - Rename the Admin folder
+Using your FTP software or your webhost's File Manager, find your Zen Cart™ /admin/ directory. Rename the directory to match the settings you just made in step A.

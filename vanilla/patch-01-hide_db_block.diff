@@ -1,0 +1,22 @@
+*** vanilla 2/applications/dashboard/views/setup/configure.php.orig	2011-01-28 14:05:27.847850941 +0100
+--- vanilla 2/applications/dashboard/views/setup/configure.php	2011-01-28 14:09:17.159886842 +0100
+***************
+*** 11,16 ****
+--- 11,17 ----
+  <div class="Form">
+     <?php echo $this->Form->Errors(); ?>
+     <ul>
++       <div style="display:none;"><!- Cherokee Market: the DB is already configured -->
+        <li>
+           <?php
+              echo $this->Form->Label('Database Host', 'Database.Host');
+***************
+*** 35,40 ****
+--- 36,42 ----
+              echo $this->Form->Input('Database.Password', 'password');
+           ?>
+        </li>
++       </div><!-- Cherokee Market -->
+        <?php if ($this->Data('NoHtaccess')): ?>
+        <li>
+           <div class="Box"><?php echo T('You are missing Vanilla\'s <b>.htaccess</b> file. Sometimes this file isn\'t copied if you are using ftp to upload your files because this file is hidden. Make sure you\'ve copied the <b>.htaccess</b> file before continuing.'); ?></div>

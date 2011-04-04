@@ -1,0 +1,46 @@
+*** zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/templates/template_default/templates/database_setup_default.php.orig	2011-01-13 18:36:19.402426562 +0100
+--- zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/templates/template_default/templates/database_setup_default.php	2011-01-13 18:41:41.494434966 +0100
+***************
+*** 12,22 ****
+  ?>
+      <form method="post" action="index.php?main_page=database_setup<?php echo zcInstallAddSID(); ?>">
+      <fieldset>
+!     <legend><?php echo DATABASE_INFORMATION; ?></legend>
+        <div class="section">
+        <select id="db_type" name="db_type" tabindex="1">
+          <option value="mysql"<?php echo setSelected('mysql', $_POST['db_type']); ?>>MySQL</option>
+  <!--      <option value="postgres"<?php echo setSelected('postgres', $_POST['db_type']); ?>>PostgreSQL</option> -->
+        </select>
+          <label for="db_type"><?php echo DATABASE_TYPE; ?></label>
+        <p><?php echo DATABASE_TYPE_INSTRUCTION . '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=14\')"> ' . TEXT_HELP_LINK . '</a>'; ?></p>
+--- 12,24 ----
+  ?>
+      <form method="post" action="index.php?main_page=database_setup<?php echo zcInstallAddSID(); ?>">
+      <fieldset>
+! <!--    <legend><?php echo DATABASE_INFORMATION; ?></legend>
+        <div class="section">
+        <select id="db_type" name="db_type" tabindex="1">
+          <option value="mysql"<?php echo setSelected('mysql', $_POST['db_type']); ?>>MySQL</option>
++ -->
+  <!--      <option value="postgres"<?php echo setSelected('postgres', $_POST['db_type']); ?>>PostgreSQL</option> -->
++ <!--
+        </select>
+          <label for="db_type"><?php echo DATABASE_TYPE; ?></label>
+        <p><?php echo DATABASE_TYPE_INSTRUCTION . '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=14\')"> ' . TEXT_HELP_LINK . '</a>'; ?></p>
+***************
+*** 42,47 ****
+--- 44,57 ----
+        <p><?php echo DATABASE_NAME_INSTRUCTION. '<a href="javascript:popupWindow(\'popup_help_screen.php?error_code=18\')"> ' . TEXT_HELP_LINK . '</a>'; ?></p>
+      </div>
+      </fieldset>
++ -->
++ 
++     <input type="hidden" id="db_type" name="db_type" value="mysql" />
++     <input type="hidden" id="db_host" name="db_host" value="localhost" />
++     <input type="hidden" id="db_username" name="db_username" value="${dbuser}" />
++     <input type="hidden" id="db_pass" name="db_pass" value="${dbpass}" />
++     <input type="hidden" id="db_name" name="db_name" value="${dbname}" />
++ 
+      <fieldset>
+      <legend><?php echo DATABASE_OPTIONAL_INFORMATION; ?></legend>
+      <p class="attention"><?php echo DATABASE_OPTIONAL_INSTRUCTION; ?></p>

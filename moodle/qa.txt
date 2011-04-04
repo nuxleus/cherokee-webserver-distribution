@@ -1,0 +1,85 @@
+* Make installation as VServer.
+** Ensure installation can proceed (it can't if there are permission problems).
+** Ensure no warnings appear after first admin login (cron, etc).
+** Create course
+** Access course
+
+* Make installation as Directory.
+** Ensure the suggested moodledata is correct (the patch should do this, as it normally displays ${app_root}/..
+** Ensure no insecure-directory message is shown in Admin Panel (patch)
+** Perform same tests as before
+
+NOTES
+-----
+Data is stored by default at ${app_root}/moodledata. Create and give permissions.
+That is default for VServer installation. Directory install suggests ${app_root}/..
+(and complains later on). This is taken care of in the patch.
+
+Creates ${app_root}/moodle/config.php (needs write permissions) (cannot be present at the beginning).
+
+Extensions required (and checked during configuration):
+unicode		support
+database	mysql	version 4.1.16
+php		version 4.3.0
+php_extension	pcre
+
+No Short URL capabilities whatsoever (no redirections needed).
+
+Aditional checks that we could perform for future versions:
+-----------------------------------------------------------
+php.ini settings:
+magic_quotes_gpc = 1    (preferred but not necessary)
+magic_quotes_runtime = 0    (necessary)
+file_uploads = 1
+session.auto_start = 0
+session.bug_compat_warn = 0
+
+Crontab: Ideally the cron.php would be run every 5-15 minutes.
+*/5 * * * * wget -q -O /dev/null http://example.com/moodle/admin/cron.php
+or
+            lynx -dump http://example.com/moodle/admin/cron.php > /dev/null
+or
+            /opt/bin/php /web/moodle/admin/cron.php
+
+
+
+
+daily.d
+
+Support
+ PHP version: [5.2.8-5.3.0) - [5.3.2- xx]
+ DB: MySQL, MSSQL, PostGres or Oracle.
+
+Required PHP Settings:
+ # memory_limit should be at least 16M (32M is recommended for Moodle
+   1.7 and 40M for Moodle 1.8 or later). Large sites may need more than
+   128M. PHP 5.2.x requires higher memory_limit values than previous
+   versions of PHP. 64bit operating systems require even more memory.
+ # register_globals MUST be OFF
+ # safe_mode needs to be OFF.
+ # session.save_handler needs to be set to FILES.
+ # magic_quotes_gpc should be OFF. (It will be an installation pre-requisite for this to be turned off from 2.0 onwards.)
+ # magic_quotes_runtime needs to be OFF.
+ # file_uploads needs to be ON.
+ # session.auto_start needs to be OFF.
+ # session.bug_compat_warn needs to be OFF.
+
+Modules:
+ PHP Extensions and libraries
+    * The mbstring extension is recommended for Moodle 1.6 or later.
+    * The iconv extension is recommended for Moodle 1.6 or later.
+    * GD library and the FreeType 2 library and extensions are needed to be able to look at the dynamic graphs that the logs pages make. (Freetype support is available as part of the GD extension for the 5.x versions of PHP)
+    * The mysql extension is required if you are using the MySQL database. Note that in some Linux distributions (notably Red Hat) this is an optional installation.
+    * The pgsql extension is required if you are using the PostgreSQL database.
+    * The zlib extension is required for zip/unzip functionality.
+    * The curl and openssl extensions are required for the Moodle network functionality (Moodle 1.8 or later).
+    * The xmlrpc extension is required for the Moodle network functionality (Moodle 1.8 or later).
+
+    * The tokenizer extension is recommended for Moodle 1.8 or later (enabled by default as of PHP 4.3.0).
+    * The ctype extension is recommended for Moodle 1.8 or later (enabled by default as of PHP 4.2.0).
+    * The pdo and pdo_sqlite extensions are required for the (experimental) SQLite 3 database support.
+
+
+
+To include DB stage, check config-dist.php and admin/cli.
+Installation can be performed automatically if no other way is found. Patch for installer still needs to be applied.

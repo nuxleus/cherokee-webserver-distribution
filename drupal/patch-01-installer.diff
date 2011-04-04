@@ -1,0 +1,96 @@
+*** drupal-6.20/install.php.orig	2011-02-02 10:59:43.099472722 +0100
+--- drupal-6.20/install.php	2011-02-02 11:03:09.995438138 +0100
+***************
+*** 216,222 ****
+    if (empty($db_host)) {
+      $db_host = 'localhost';
+    }
+!   $db_types = drupal_detect_database_types();
+  
+    // If both 'mysql' and 'mysqli' are available, we disable 'mysql':
+    if (isset($db_types['mysqli'])) {
+--- 216,222 ----
+    if (empty($db_host)) {
+      $db_host = 'localhost';
+    }
+!   $db_types = array("${dbtype}" => "${dbtype}");
+  
+    // If both 'mysql' and 'mysqli' are available, we disable 'mysql':
+    if (isset($db_types['mysqli'])) {
+***************
+*** 259,267 ****
+  
+      // Database name
+      $form['basic_options']['db_path'] = array(
+!       '#type' => 'textfield',
+        '#title' => st('Database name'),
+!       '#default_value' => $db_path,
+        '#size' => 45,
+        '#required' => TRUE,
+        '#description' => $db_path_description
+--- 259,267 ----
+  
+      // Database name
+      $form['basic_options']['db_path'] = array(
+!       '#type' => 'hidden',
+        '#title' => st('Database name'),
+!       '#default_value' => "${dbname}",
+        '#size' => 45,
+        '#required' => TRUE,
+        '#description' => $db_path_description
+***************
+*** 269,286 ****
+  
+      // Database username
+      $form['basic_options']['db_user'] = array(
+!       '#type' => 'textfield',
+        '#title' => st('Database username'),
+!       '#default_value' => $db_user,
+        '#size' => 45,
+        '#required' => TRUE,
+      );
+  
+      // Database username
+      $form['basic_options']['db_pass'] = array(
+!       '#type' => 'password',
+        '#title' => st('Database password'),
+!       '#default_value' => $db_pass,
+        '#size' => 45,
+      );
+  
+--- 269,286 ----
+  
+      // Database username
+      $form['basic_options']['db_user'] = array(
+!       '#type' => 'hidden',
+        '#title' => st('Database username'),
+!       '#default_value' => "${dbuser}",
+        '#size' => 45,
+        '#required' => TRUE,
+      );
+  
+      // Database username
+      $form['basic_options']['db_pass'] = array(
+!       '#type' => 'hidden',
+        '#title' => st('Database password'),
+!       '#default_value' => "${dbpass}",
+        '#size' => 45,
+      );
+  
+***************
+*** 294,300 ****
+  
+      // Database host
+      $form['advanced_options']['db_host'] = array(
+!       '#type' => 'textfield',
+        '#title' => st('Database host'),
+        '#default_value' => $db_host,
+        '#size' => 45,
+--- 294,300 ----
+  
+      // Database host
+      $form['advanced_options']['db_host'] = array(
+!       '#type' => 'hidden',
+        '#title' => st('Database host'),
+        '#default_value' => $db_host,
+        '#size' => 45,

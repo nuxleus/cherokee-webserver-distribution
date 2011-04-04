@@ -1,0 +1,20 @@
+*** moodle/admin/cli/install.php.orig	2011-01-05 12:21:42.096580757 +0100
+--- moodle/admin/cli/install.php	2011-01-05 12:21:49.701661434 +0100
+***************
+*** 365,371 ****
+  
+  } else {
+      if (is_dataroot_insecure()) {
+!         cli_error(get_string('pathsunsecuredataroot', 'install'));
+      }
+      if (!install_init_dataroot($CFG->dataroot, $CFG->directorypermissions)) {
+          $a = (object)array('dataroot' => $CFG->dataroot);
+--- 365,371 ----
+  
+  } else {
+      if (is_dataroot_insecure()) {
+!         //cli_error(get_string('pathsunsecuredataroot', 'install'));
+      }
+      if (!install_init_dataroot($CFG->dataroot, $CFG->directorypermissions)) {
+          $a = (object)array('dataroot' => $CFG->dataroot);
+

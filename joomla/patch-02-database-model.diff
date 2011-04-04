@@ -1,0 +1,56 @@
+*** joomla/installation/models/forms/database.xml.orig	Mon Feb 14 10:43:34 2011
+--- joomla/installation/models/forms/database.xml	Mon Feb 14 11:05:11 2011
+***************
+*** 13,30 ****
+  			</field>
+  			<field name="db_host" type="text" id="db_host" class="inputbox"
+  				label="INSTL_DATABASE_HOST_LABEL"
+! 				default="localhost"
+  				required="true"
+  			/>
+  			<field name="db_user" type="text" id="db_user" class="inputbox"
+  				label="INSTL_DATABASE_USER_LABEL"
+  				required="true"
+  			/>
+  			<field name="db_pass" type="password" id="db_pass" class="inputbox"
+  				label="INSTL_DATABASE_PASSWORD_LABEL"
+  			/>
+  			<field name="db_name" type="text" id="db_name" class="inputbox"
+  				label="INSTL_DATABASE_NAME_LABEL"
+  				required="true"
+  			/>
+  		</fieldset>
+--- 13,33 ----
+  			</field>
+  			<field name="db_host" type="text" id="db_host" class="inputbox"
+  				label="INSTL_DATABASE_HOST_LABEL"
+! 				default="localhost"
+  				required="true"
+  			/>
+  			<field name="db_user" type="text" id="db_user" class="inputbox"
+  				label="INSTL_DATABASE_USER_LABEL"
++ 				default="${dbuser}"
+  				required="true"
+  			/>
+  			<field name="db_pass" type="password" id="db_pass" class="inputbox"
+  				label="INSTL_DATABASE_PASSWORD_LABEL"
++ 				default="${dbpass}"
+  			/>
+  			<field name="db_name" type="text" id="db_name" class="inputbox"
+  				label="INSTL_DATABASE_NAME_LABEL"
++ 				default="${dbname}"
+  				required="true"
+  			/>
+  		</fieldset>
+***************
+*** 46,49 ****
+  			/>
+  		</fieldset>
+  	</fieldset>
+! </form>
+\ No newline at end of file
+--- 49,52 ----
+  			/>
+  		</fieldset>
+  	</fieldset>
+! </form>

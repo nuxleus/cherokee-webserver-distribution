@@ -1,0 +1,53 @@
+* Make installation as VServer.
+** Ensure authentication works
+** ...
+* Make installation as Directory.
+** Perform same tests
+
+NOTES
+-----
+Requirements:
+	C compiler installed (if installing from source code).
+
+	CGI usage is not required, but if used it needs Thomas
+	Boutell's gd library version 1.6.3 or higher (required by the
+	statusmap and trends CGIs)
+
+Steps:
+------
+/usr/sbin/useradd -m nagios
+passwd nagios
+
+Create a new nagcmd group for allowing external commands to be submitted through the web interface. Add both the nagios user and the apache user to the group.
+/usr/sbin/groupadd nagcmd
+/usr/sbin/usermod -a -G nagcmd nagios
+/usr/sbin/usermod -a -G nagcmd www-data
+
+cd ${app_root}/nagios_src && ./configure --with-command-group=nagcmd --prefix=${app_root}/nagios
+
+make all
+make install
+make install-init
+make install-config
+make install-commandmode
+
+Edit the /usr/local/nagios/etc/objects/contacts.cfg:
+     change the email address associated with the nagiosadmin
+
+Configure webserver (directories + user auth for 'nagiosadmin')
+
+
+cd ${app_root}/nagios_plugins && ./configure --with-nagios-user=nagios --with-nagios-group=nagios --prefix=${app_root}/nagios
+make
+make install
+
+ln -s /etc/init.d/nagios /etc/rcS.d/S99nagios
+
+Verify the sample Nagios configuration files.
+       /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+
+Edit the /usr/local/nagios/etc/objects/commands.cfg:
+     change any '/bin/mail' references to '/usr/bin/mail' if required
+
+/etc/init.d/nagios start
+

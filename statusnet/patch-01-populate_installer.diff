@@ -1,0 +1,52 @@
+*** statusnet/install.php.orig	2011-01-13 16:13:49.774426422 +0100
+--- statusnet/install.php	2011-01-13 16:20:40.750734791 +0100
+***************
+*** 144,179 ****
+                  </ul>
+              </fieldset>
+  
+!             <fieldset id="settings_db">
+!                 <legend>Database settings</legend>
+!                 <ul class="form_data">
+!                     <li>
+!                         <label for="host">Hostname</label>
+!                         <input type="text" id="host" name="host" value="{$post->value('host')}" />
+!                         <p class="form_guide">Database hostname</p>
+!                     </li>
+!                     <li>
+!                         <label for="dbtype">Type</label>
+!                         $dbRadios
+!                         <p class="form_guide">Database type</p>
+!                     </li>
+!                     <li>
+!                         <label for="database">Name</label>
+!                         <input type="text" id="database" name="database" value="{$post->value('database')}" />
+!                         <p class="form_guide">Database name</p>
+!                     </li>
+!                     <li>
+!                         <label for="dbusername">DB username</label>
+!                         <input type="text" id="dbusername" name="dbusername" value="{$post->value('dbusername')}" />
+!                         <p class="form_guide">Database username</p>
+!                     </li>
+!                     <li>
+!                         <label for="dbpassword">DB password</label>
+!                         <input type="password" id="dbpassword" name="dbpassword" value="{$post->value('dbpassword')}" />
+!                         <p class="form_guide">Database password (optional)</p>
+!                     </li>
+!                 </ul>
+!             </fieldset>
+  
+              <fieldset id="settings_admin">
+                  <legend>Administrator settings</legend>
+--- 144,154 ----
+                  </ul>
+              </fieldset>
+  
+!             <input type="hidden" id="host" name="host" value="localhost" />
+!             <input type="hidden" id="database" name="database" value="${dbname}" />
+!             <input type="hidden" id="dbusername" name="dbusername" value="${dbuser}" />
+!             <input type="hidden" id="dbpassword" name="dbpassword" value="${dbpass}" />
+!             <input type="hidden" name="dbtype" value="${dbtype}" />
+  
+              <fieldset id="settings_admin">
+                  <legend>Administrator settings</legend>

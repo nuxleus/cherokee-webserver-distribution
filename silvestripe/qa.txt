@@ -1,0 +1,37 @@
+* Make installation as VServer.
+** Check permissions: ensure installer can proceed without notice (see
+   notes about permissions).
+** Ensure all main menues are accessible.
+** Ensure <user_profile> -> "Change my picture" can upload images.
+** Ensure new topics can be created.
+* Make installation as Directory.
+** Make same tests as for VServer
+
+NOTES
+-----
+* PHP version 5.2.0+
+  safe_mode = Off
+  memory_limit >= 48M
+* PHP modules:
+      dom
+      gd2
+      hash
+      iconv
+      mbstring
+      mysql or pgsql, if you use one of these databases
+      session
+      simplexml
+      tokenizer
+      xml
+
+install.php:
+	"username" => defined('SS_DATABASE_USERNAME') ? SS_DATABASE_USERNAME : "root",
+	"password" => defined('SS_DATABASE_PASSWORD') ? SS_DATABASE_PASSWORD : "",
+	"database" => isset($_SERVER['argv'][2]) ? $_SERVER['argv'][2] : "SS_mysite",
+
+
+PRO installer:
+++++++++++++++
+# Pro: http://silverstripe.org/assets/modules/stable/sqlite3-v1.0.tar.gz
+# Pro: http://www.silverstripe.org/assets/modules/stable/mssql-v0.9.5.tar.gz
+# Pro: http://www.silverstripe.org/assets/modules/trunk/postgresql-trunk-r113659.tar.gz

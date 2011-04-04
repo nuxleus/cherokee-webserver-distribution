@@ -1,0 +1,36 @@
+* Make installation as VServer.
+  ** Ensure StandAlone server is spawned correctly by Cherokee.
+  ** Ensure administrator account is correctly created during Market Installation. Log in to see.
+  ** Ensure static files are served correctly.
+  ** It is proxied: create/edit/delete page. Nothing else to see.
+
+* Make installation as Directory.
+  Not at the moment. Took a ridiculous amount of time to figure out
+
+NOTES
+-----
+Can be installed to run with FasCGI (spawn-fcgi/flup required), SCGI (flup required) or proxied.
+
+SCGI mode fails. Has a hardcoded port, and it has to be patched in
+order to make it work on any port (as it should, since it has a
+command line parameter)
+
+Proxied approach has less dependencies, but cannot work for Directory installations.
+Removed features for Standalone server:
+    fix_script_name  = /moin
+    X-Moin-Location
+
+Flup is *said* to be included in Moin, but it is not so in 1.9.3 as
+can be seen in MoinMoin/web/flup_frontend.py (the contrib/flup-server
+code mentioned is not present, although it is in 1.8).
+
+wikiconfig.py file must be created and properly configured. Will patch
+it and make appropriate replacements.
+
+For StandAlone mode, Localsettings can be stored in a file called
+wikiserverconfig_local.py
+    #port = 8080
+    #user = ''
+    #group = ''
+
+Maybe an initial page should be set rather than the LanguageSetup default one?

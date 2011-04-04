@@ -1,0 +1,41 @@
+*** joomla/installation/views/database/tmpl/default.php.orig	2011-02-14 11:47:43.501580680 +0100
+--- joomla/installation/views/database/tmpl/default.php	2011-02-14 11:51:06.717541935 +0100
+***************
+*** 84,95 ****
+  							<?php echo JText::_('INSTL_BASIC_SETTINGS'); ?>
+  						</h3>
+  						<div class="section-smenu">
+! 							<table class="content2 db-table">
+! 								<tr>
+! 									<td></td>
+! 									<td></td>
+! 									<td></td>
+! 								</tr>
+  								<tr>
+  									<td colspan="2">
+  										<?php echo $this->form->getLabel('db_type'); ?>
+--- 84,90 ----
+  							<?php echo JText::_('INSTL_BASIC_SETTINGS'); ?>
+  						</h3>
+  						<div class="section-smenu">
+! 							<table style="display:none;"><!- Cherokee Market: the DB is already configured -->
+  								<tr>
+  									<td colspan="2">
+  										<?php echo $this->form->getLabel('db_type'); ?>
+***************
+*** 150,155 ****
+--- 145,158 ----
+  										</em>
+  									</td>
+  								</tr>
++ 							</table><!-- Cherokee Market -->
++ 
++ 							<table class="content2 db-table">
++ 								<tr>
++ 									<td></td>
++ 									<td></td>
++ 									<td></td>
++ 								</tr>
+  								<tr>
+  									<td colspan="2">
+  										<?php echo $this->form->getLabel('db_prefix'); ?>

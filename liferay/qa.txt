@@ -1,0 +1,31 @@
+* Make installation as VServer.
+** Ensure it can boot up on demand (takes a couple of minutes)
+** Ensure no sample data is present (access with test user to see, instead of 7Cog details).
+** Ensure menues can be accessed normally and no images/css are unreachable due to the proxy setting.
+* Make installation as Directory.
+** Perform same tests.
+
+NOTES
+-----
+Prerequisites
+    * Hardware - 1GB RAM
+    * Java 6 or later for Linux or Mac. Windows users don't need to install Java, as JRE is bundled. 
+
+Java Install:
+     Windows -> Bundled
+     Mac OSX -> Included in OSX (check version?)
+     Linux, do something like: sudo apt-get install sun-java6-jdk
+
+
+cd /{directory}/liferay-{version}/tomcat-{version}/bin
+./startup.sh
+
+Takes 30-60seconds to load. (Or more)
+If configured for a port higher that 30000 it simply doesn't launch. ****(Undocumented)****
+Default access details: test:test@liferay.com
+
+To remove sample data: delete /liferay/data/hsql/{lportal.properties,lportal.script} and liferay/tomcat-6.0.26/webapps/sevencogs-hook/
+
+* Warning: If infinite-redirection appears, make sure to clean the
+  cookies for the domain. It could be a problem from a previous
+  installation.

@@ -1,0 +1,13 @@
+--- zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/admin_configure.php.orig	2010-06-03 08:37:20.000000000 +0200
++++ zen-cart-v1.3.9g-full-fileset-09292010/zc_install/includes/admin_configure.php	2010-10-08 09:01:56.464890865 +0200
+@@ -94,6 +94,8 @@
+ '  // ie: /path/to/your/webspace/public_html/zen/cache   -- leave no trailing slash  ' . "\n" .
+ '  define(\'SQL_CACHE_METHOD\', \'' . $this->getConfigKey('SQL_CACHE_METHOD') . '\'); ' . "\n" .
+ '  define(\'DIR_FS_SQL_CACHE\', \'' . $this->getConfigKey('DIR_FS_SQL_CACHE') . '\');' . "\n\n" .
++'// Overridden by Market installation' . "\n" .
++'  define(\'ADMIN_BLOCK_WARNING_OVERRIDE\', TRUE); // Allow /admin directory to be called as such' . "\n" .
+ //'?'.'>' .
+ '// EOF';
+-?>
+\ No newline at end of file
++?>

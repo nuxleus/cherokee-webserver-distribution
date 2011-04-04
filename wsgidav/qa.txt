@@ -1,0 +1,49 @@
+* Make installation as VServer.
+** Perform connection test
+* Make installation as Directory.
+** Perform same tests.
+
+NOTES
+-----
+WsgiDAV requires
+        * Python version 2.4 or later
+        * Optionally lxml (on Python 2.5 it will fall back to xml)
+        * Optionally Mercurial (only when checking out source code from the repository)
+
+Steps:
+1) Install, create uwsgi's xml file and start it like this:	./uwsgi -x file.xml
+2) Map an information source to uwsgi, and a directory to the uWSGI handler.
+
+ATM, to install this we need to get it from Mercurial and have uwsgi
+installed on our system. The installer is packing an old ZIP
+release. We will have to make connection tests once we settle on a
+specific version.
+
+Connection test:
+----------------
+1) Nautilus -> File -> Connect to server  [non-anonymous connection required. Otherwise it will fail, although docs for beta2 say RW should be available.]
+   * Service type: ‘WebDAV (HTTP)’
+   * Server: example.com
+   * Folder: ‘ro_docs’ or whatever the share name is (leave empty for root share).
+   * Port: the port number (leave empty for default port 80)
+   * User Name: leave this empty: do not enter anything here.
+   Then click ‘Connect’ and enter username and password.
+
+2) Mount a WebDAV file system  [WORKS for anonymous]
+
+$ sudo apt-get install davfs2
+$ sudo mkdir /mnt/wsgidav_temp
+$ sudo chmod 0766 /mnt/wsgidav_temp
+$ sudo mount -t davfs http://192.168.0.2/dav /mnt/wsgidav -o rw
+  Please enter the username to authenticate with server
+  http://192.168.0.2/dav or hit enter for none.
+  Username: tester
+  Please enter the password to authenticate user tester with server
+  http://192.168.0.2/dav or hit enter for none.
+  Password:
+$ sudo unmount /mnt/wsgidav
+
+TODO:
+-----
+Add Authenticated user mappings.
+Update release to something better than beta2.

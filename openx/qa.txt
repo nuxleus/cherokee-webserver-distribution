@@ -1,0 +1,21 @@
+* Make installation as VServer.
+** Check permissions: ensure installer can proceed without notice (see
+   notes about permissions).
+** Ensure graphs are shown if gd_library is installed.
+** If gd not installed, ensure "Missing GD" message is displayed.
+** Ensure sections are accessible: Home, Statistics, Inventory, My Account
+** No redirections are in place. Not much to check besides permissions.
+* Make installation as Directory.
+** Make same tests as for VServer
+
+NOTES
+-----
+
+Installer neeeds write permissions for openx/var and openx/www/images
+
+The tar.bz2 archive decompressed OK but wouldn't work at
+all. Switching to the tar.gz file fixed the situation on 2.8.7.
+
+DB integration: the installation process validates users against their
+own web services, and then proceeds to the rest of the config
+(including DB info). Their own installer can create the DB.

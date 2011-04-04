@@ -1,0 +1,113 @@
+* Make installation as VServer.
+** Check accessibilty of /, /wp-admin and /wp-admin/
+** Ensure AutoInstallations work: updates -> Re-install automatically.
+** Ensure theme installation works and no FTP details are asked.
+** Ensure plugin installation works and no FTP details are aseked.
+** Ensure un-pretty permalinks work: click on sample Post, try links on the post for 'author', 'categories', 'date', 'edit', 'leave a comment'
+** Enable pretty urls: settings->permalinks->Custom: /%year%/%monthnum%/%postname%/
+** Ensure pretty permalinks work: click on sample Post, try links on the post for 'author', 'categories', 'date', 'edit', 'leave a comment'
+
+** Dashboard: create draft, save it
+** Posts
+*** Add new post. Visit. Edit.
+*** Add new category. Check. Edit.
+*** Add new tag. Check. Edit.
+
+** Media: Add new media. Check. View. Edit. Check. Delete. Check.
+** Links:
+*** Add new link
+*** Add new link category
+*** Delete link
+
+** Pages: Add new page. Visit. Edit. Check. Delete. Check.
+
+** Comments: List comments. Delete one.
+
+** Appearance
+*** Themes: Install new theme. Ensure it is automatic. Change it. Check. Restore. Check.
+*** Header: Upload new header. Ensure it is possible. Select it.
+*** Editor: Edit 404.php file. Save. Ensure it is possible.
+
+** Plugins
+*** Update plugins if possible.
+*** Install random one. Ensure it can be done automatically.
+
+** Users: Ensure users can be added, modified, deleted.
+
+** Tools: Ensure DB-export is possible.
+
+** Settings: Ensure changes are applied.
+
+** Bugs found:
+*** Ensure "Preview-post" works.
+*** Ensure "Preview-theme" works (when browsing new themes)
+*** Ensure "Search" from within main site page.
+
+************************************************************************
+
+* Make installation as Directory.
+
+** Check accessibilty of /, /wp-admin and /wp-admin/
+** Ensure AutoInstallations work: updates -> Re-install automatically.
+** Ensure theme installation works and no FTP details are asked.
+** Ensure plugin installation works and no FTP details are aseked.
+** Ensure un-pretty permalinks work: click on sample Post, try links on the post for 'author', 'categories', 'date', 'edit', 'leave a comment'
+** Enable pretty urls: settings->permalinks->Custom: /%year%/%monthnum%/%postname%/
+** Ensure pretty permalinks work: click on sample Post, try links on the post for 'author', 'categories', 'date', 'edit', 'leave a comment'
+
+** Dashboard: create draft, save it
+** Posts
+*** Add new post. Visit. Edit.
+*** Add new category. Check. Edit.
+*** Add new tag. Check. Edit.
+
+** Media: Add new media. Check. View. Edit. Check. Delete. Check.
+** Links:
+*** Add new link
+*** Add new link category
+*** Delete link
+
+** Pages: Add new page. Visit. Edit. Check. Delete. Check.
+
+** Comments: List comments. Delete one.
+
+** Appearance
+*** Themes: Install new theme. Ensure it is automatic. Change it. Check. Restore. Check.
+*** Header: Upload new header. Ensure it is possible. Select it.
+*** Editor: Edit 404.php file. Save. Ensure it is possible.
+
+** Plugins
+*** Update plugins if possible.
+*** Install random one. Ensure it can be done automatically.
+
+** Users: Ensure users can be added, modified, deleted.
+
+** Tools: Ensure DB-export is possible.
+
+** Settings: Ensure changes are applied.
+
+** Bugs found:
+*** Ensure "Preview-post" works.
+*** Ensure "Preview-theme" works (when browsing new themes)
+*** Ensure "Search" from within main site page.
+
+************************************************************************
+
+NOTES:
+# On updates, WP creates a temporary file and confirms that the file
+# just created is owned by the same user that owns the script currently
+# being run.
+# Those scripts are (ATM):
+#   wp-admin/plugin-install.php
+#   wp-admin/theme-install.php
+#   wp-admin/install.php
+#   wp-admin/upgrade.php
+#   wp-admin/ms-upgrade-network.php
+#   wp-admin/update-core.php
+# Workaround for semaless updates: chown
+
+
+
+Dependencies:
+	yum install php php-mysql
+	apt-get install php5-cgi php5-mysql

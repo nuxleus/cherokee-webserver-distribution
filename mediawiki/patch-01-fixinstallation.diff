@@ -1,0 +1,50 @@
+*** mediawiki-1.16.0/config.orig/Installer.php	2010-09-13 23:32:05.678703675 +0200
+--- mediawiki-1.16.0/config/Installer.php	2010-09-13 23:34:40.758704485 +0200
+***************
+*** 1343,1348 ****
+--- 1343,1354 ----
+  		print "<li style=\"list-style: none\">\n";
+  		print "<p>Creating LocalSettings.php...</p>\n\n";
+  		$localSettings = "<" . "?php$endl$local";
++ 
++ 		// Market parameters
++ 		$filename = dirname(__FILE__) .'/LocalSettings.inc';
++ 		$handle = fopen($filename, "r");
++ 		$localSettings .= fread($handle, filesize($filename));
++ 
+  		// Fix up a common line-ending problem (due to CVS on Windows)
+  		$localSettings = str_replace( "\r\n", "\n", $localSettings );
+  		$f = fopen( "LocalSettings.php", 'xt' );
+***************
+*** 1358,1363 ****
+--- 1364,1371 ----
+  			print "<hr/>\n";
+  			writeSuccessMessage();
+  			print "</li>\n";
++ 			exec ('mv LocalSettings.php ..');
++ 			exec ('chmod 600 ../LocalSettings.php && chmod 000 '.dirname(__FILE__));
+  		} else {
+  			fclose( $f );
+  			dieout( "<p class='error'>An error occured while writing the config/LocalSettings.php file. Check user rights and disk space then try again.</p></li>\n" );
+***************
+*** 1759,1768 ****
+  <div class="success-box">
+  <p>
+  <span class="success-message">Installation successful!</span>
+! Move the <tt>config/LocalSettings.php</tt> file to the parent directory, then follow
+! <a href="../$script"> this link</a> to your wiki.</p>
+! <p>You should change file permissions for <tt>LocalSettings.php</tt> as required to
+! prevent other users on the server reading passwords and altering configuration data.</p>
+  </div>
+  HTML;
+  	}
+--- 1767,1775 ----
+  <div class="success-box">
+  <p>
+  <span class="success-message">Installation successful!</span>
+! The <tt>LocalSettings.php</tt> file has been generated, and the <tt>config</tt> directory permissions
+! disallow further writings as a security measure.</p>
+! <p>Follow <a href="../$script">this link</a> to your wiki.</p>
+  </div>
+  HTML;
+  	}

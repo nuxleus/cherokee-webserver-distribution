@@ -1,0 +1,42 @@
+* Make installation as VServer.
+** Remove php5-curl from system to see if dependencies are correctly detected.
+** Reinstall php5-curl and run our installer.
+** Once Cherokee is configured, ensure StatusNet installer runs smoothly and detects "Fancy_URLs".
+** Once installed, ensure URLS are shortened
+** Login
+** Submit "tweet"
+** Check 'Personal Tab'. Check first tweet is present.
+** Check 'Account tab'. Ensure 'Avatar' can be uploaded.
+* Make installation as Directory.
+** Make sure /target_directory/check-fancy works. This one gave trouble initially.
+** Make same tests as for VServer
+
+NOTES
+-----
+The following software packages are *required* for this software to
+run correctly.
+
+- PHP 5.2.3+. It may be possible to run this software on earlier
+  versions of PHP, but many of the functions used are only available
+  in PHP 5.2 or above. 5.2.6 or later is needed for XMPP background
+  daemons on 64-bit platforms. PHP 5.3.x should work correctly in this
+  release, but problems with some plugins are possible.
+- MySQL 5.x. The StatusNet database is stored, by default, in a MySQL
+  server. It has been primarily tested on 5.x servers, although it may
+  be possible to install on earlier (or later!) versions. The server
+  *must* support the MyISAM storage engine -- the default for most
+  MySQL servers -- *and* the InnoDB storage engine.
+
+Your PHP installation must include the following PHP extensions:
+
+- Curl. This is for fetching files by HTTP.
+- XMLWriter. This is for formatting XML and HTML output.
+- MySQL. For accessing the database.
+- GD. For scaling down avatar images.
+- mbstring. For handling Unicode (UTF-8) encoded strings.
+
+
+DB Integration:
++++++++++++++++
+The patch replaces the DB form for a set of hidden fields. The values
+are extracted from the database.py module.

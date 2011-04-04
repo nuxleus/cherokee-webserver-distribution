@@ -1,0 +1,62 @@
+* Make installation as VServer.
+** Install default sample data (at step 6)
+** Ensure that INSTALLATION DIRECTORY has been removed (by our patch)
+
+** Access /
+   [Test: Click on menu and sidebar elements. Follow a link to a story]
+   Ensure links work out of the box (since 1.6, SEO friendly by default). Perform test.
+   Search for term 'Joomla'. Perform test.
+
+** Access /administrator
+*** Add New Article: Add new article. Apply. Preview. Save. Edit.
+*** Article Manager: Remove from frontpage. Check. Unpublish the article. Delete it.
+*** Front Page Manager: Remove some articles from Frontpage.
+*** Section Manager: Create section. Check. Edit. Check. Delete.
+*** Category Manager: Edit categories.
+*** IMPORTANT: Media Manager: Create folder for new media. Upload media. Check. Delete media. Ensure that default permissions don't interfere with functionality.
+*** Menu Manager: Edit menues.
+*** Language Manager: Nothing to do here.
+*** User Manager: Create, edit, delete user.
+*** Global Configuration: Ensure URL options work properly.
+*** Go to extensions:
+    Install > Install / Uninstall. Ensure modules/plugins/templates are installable.
+
+
+* Make installation as Directory.
+** Run same set of tests as for VServer.
+
+
+NOTES:
+------
+Permissions:
+Joomla recommendation is 755 www-data:users
+Directories that need be writable:
+  /cache      <--- Can be enabled/disabled
+  /components <--- Component update
+  /images     <--- Image and folder creation/deletion
+  /modules    <--- Module installation
+  /plugins    <--- Plugin uptade
+  /templates  <--- Template edition/addition
+  /tmp        <--- Must have.
+
+This is what the postinstaller does.
+
+WIP:
+----
+PHP requirements:
+PHP Version >= 4.3.10
+- Zlib Compression Support
+- XML Support
+- MySQL Support
+
+Patch:
+Delete 'installation' directory.
+      Condition to removedir()
+      		if (file_exists( JPATH_CONFIGURATION . DS . 'configuration.php' ) &&
+		   (filesize( JPATH_CONFIGURATION . DS . 'configuration.php' ) > 10) &&
+		   file_exists( JPATH_INSTALLATION . DS . 'index.php' )) {
+		  
+		   }
+
+
+session.save_path: ensure the specified one is writable by the user running PHP.

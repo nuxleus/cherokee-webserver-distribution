@@ -1,0 +1,14 @@
+--- nuxeo-dm-5.4.0-tomcat/templates/default/conf/server.xml.orig	2010-11-16 11:28:33.748557828 +0100
++++ nuxeo-dm-5.4.0-tomcat/templates/default/conf/server.xml	2010-11-16 11:29:05.260599579 +0100
+@@ -90,9 +90,11 @@
+     -->
+ 
+     <!-- Define an AJP 1.3 Connector on port ${nuxeo.server.ajp.port} -->
++    <!--
+     <Connector port="${nuxeo.server.ajp.port}" protocol="AJP/1.3"
+                address="${nuxeo.bind.address}"
+                redirectPort="${nuxeo.server.https.port}" />
++    -->
+ 
+ 
+     <!-- An Engine represents the entry point (within Catalina) that processes

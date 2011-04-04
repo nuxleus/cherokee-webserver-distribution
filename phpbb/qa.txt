@@ -1,0 +1,46 @@
+* Make installation as VServer.
+** Ensure phpBB3 installer runs smoothly.
+** Ensure the install dir is moved automatically, so that the forum can be used immediately.
+** Login as admin
+** Create topic
+** Search topic
+** Check User Control Panel and ensure changes can be made.
+** Access Administration Control Panel (by clicking on the link at the bottom of the page)
+** Check file attachment settings. This is the path that will receive uploads.
+** Logout
+
+** Create user account
+** Create topic. Attach file. Ensure it can be done.
+** Search topic
+** Check User Control Panel and ensure changes can be made.
+
+* Make installation as Directory.
+** Make same tests as for VServer
+
+NOTES
+-----
+Three directories need write permissions: files, store and cache,
+images/avatars/upload/, and config.php file. Their installer chmods
+directories to 777 upon completion, so it has to own them.
+
+It provides no URL rewriting functionality. Will leave it like that
+for now.
+
+Languages have 3 files, although some are missing for several
+languages.
+
+Upon installation, the '/install' directory has to be
+deleted/renamed. If this directory is still present, only the
+Administration Control Panel (ACP) will be accessible.
+
+patch-01-fixinstallation.diff does:
+   Rename directory to install.market_moved
+   Change permissions of install.market_moved to 000
+   Add message informing that the Market has done the task for them.
+
+
+DB customization:
+Providing a prefilled config file doesn't work because some tables
+must be created by the installer (and simply dumping a DB schema is
+not enough). The required DB fields are prepopulated by modifying the
+installer.

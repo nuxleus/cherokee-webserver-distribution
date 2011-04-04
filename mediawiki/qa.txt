@@ -1,0 +1,46 @@
+* Make installation as VServer.
+** Make sure that installer automatically places LocalSettings.php in place, displays message accordingly and sets permissions to LocalSettings.php (chmod 600) and config directory (chmod 0)
+** Make sure than regular links on main page are rewritten and accessible: http://example.com/wiki/Main_Page
+** Modify Main Page: Edit, discuss, etc. Make sure submissions work.
+** Try Lookup to see if it yields results (check form submission is correct)
+** Create another user
+** Login/Logout
+** Login as admin
+** Test permissions: /wiki/Special:UserRights
+** Delete Talk: /wiki/index.php?title=Talk:Main_Page&action=edit&redlink=1
+** Delete Page History: /wiki/index.php?title=Main_Page&action=history
+** Delete Page: /wiki/index.php?title=Main_Page&action=delete
+** Review admin pages: /wiki/Special:SpecialPages
+
+* Make installation as Directory.
+** Make sure MediaWiki logo is displayed on first page of installation: <img src="skins/common/images/mediawiki.png" alt='The MediaWiki logo' />
+** Make sure installer can run: clicking on config/index.php showed problems referencing (/config)+/index.php
+** Run same set of tests as for VServer.
+
+NOTES
+-----
+Following MediaWiki recommendations, Short URLs are of the form
+example.com/wiki/Page_title instead of example.com/Page_title. This
+follows Wikipedia's setup. According to
+http://www.mediawiki.org/wiki/Manual:Short_URL, the former case may
+create an unstable URL structure and leave some page names unusable.
+
+Not all URLs are rewritten, as recommended.
+
+Before installing: Make config directory writable: chmod a+w config
+After installing: LocalSettings.php must be moved to parent directory
+and reset config dir permissions.
+Make patch for that (and set messages accordingly).
+
+MediaWiki requires PHP 5.1+ and either MySQL, PostgreSQL, or
+SQLite. This is checked on their installer.
+
+Incompatibilities: PHP 5.3.1 has a bug in it and is not supported by
+MediaWiki. You should use PHP 5.3.0 or PHP 5.3.2 instead.
+
+Extra configuration needed to work with Cherokee:
+$wgScriptPath       = "/w";
+$wgScript           = "$wgScriptPath/index.php";
+$wgRedirectScript   = "$wgScriptPath/redirect.php";
+$wgArticlePath      = "%(target_directory)s/$1";
+$wgUsePathInfo      = true;

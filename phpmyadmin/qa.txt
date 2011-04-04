@@ -1,0 +1,31 @@
+* Make installation as VServer.
+** Ensure MySQL is accessible.
+** Ensure upload/save dirs are functional.
+** Everything else is DB related.
+
+* Make installation as Directory.
+** Perform same set of tests.
+
+NOTES
+-----
+Requirements:
+  * Web browser with cookies enabled.
+  * MySQL 5.0 or newer.
+  * PHP
+      + You need PHP 5.2.0 or newer, with session support (see FAQ 1.31) and
+        the Standard PHP Library (SPL) extension.
+      + To support uploading of ZIP files, you need the PHP zip extension.
+      + For proper support of multibyte strings (eg. UTF-8, which is currently
+        default), you should install mbstring and ctype extensions.
+      + You need GD2 support in PHP to display inline thumbnails of JPEGs
+        ("image/jpeg: inline") with their original aspect ratio
+      + When using the "cookie" authentication method, the mcrypt extension is
+        strongly suggested for most users and is required for 64?bit machines.
+        Not using mcrypt will cause phpMyAdmin to load pages significantly
+        slower.
+      + To support upload progress bars, see FAQ 2.9.
+
+A configuration file is provided to enable advanced settings. Creating
+tables (script/create_tables.sql) and assigning permissions to the
+un-configured user is still required. In future versions we could
+handle this also.

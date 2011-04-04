@@ -1,0 +1,116 @@
+* Make installation as VServer.
+
+** Visit site for 'Drupal installation'
+*** Ensure no steps are required besides providing DB and user
+    details. Creation of settings file must be automatic.
+*** Set 'clean-urls' as Enabled (default).
+*** Visit status report to see if there are warnings: http://example.com/admin/reports/status
+
+** My Account
+*** Check account details are viewable and editable.
+*** Log out.
+*** Log in.
+*** Change user password (My account->Edit)
+*** Log out.
+*** Log in.
+
+** Create Content
+*** Create Page: set title, menu link and body.
+    Preview
+    Save
+    Ensure menu links appear and are usable on header.
+    Visit page. Make sure URLs are clean, such as http://example.com/node/2 (no ?q=xxxx).
+    Visit page with unlogged browser. Expect the same.
+*** Create Story: set title, menu link and body.
+    Preview
+    Save
+    Ensure menu links appear and are usable on header.
+    Visit page. Make sure URLs are clean, such as http://example.com/node/2 (no ?q=xxxx).
+    Visit page with unlogged browser. Expect the same.
+*** Add comment to story. Ensure it is possible.
+
+** Administer
+*** Content management
+    * Comments: Edit comment. Delete comment/Unpublish comment.
+    * Content: Filter contents. Edit existent story. Edit existent page.
+    * Content types: Check that types are modifiable.
+    * Post settings: Ensure node-settings are changed upon request.
+    * RSS publishing: Change RSS settings. Ensure correct generation at http://example.com/rss.xml
+    * Taxonomy: Create new vocabulary entry
+
+*** Site building
+    * Blocks: Change block order. Check results.
+    * Menus: Change menu disposition. Check results.
+    * Modules: Enable/disable modules. Check results.
+    * Themes: Change theme. Check results.
+
+*** Site configuration: Modify site settings. Check that changes are applied.
+*** User management: create new role and new user with the role. Grant creation permission. Logout. Login as new user. Create content.
+*** Reports: Check reports. None should issue a borken-warning.
+*** Help: Ensure help elements are correctly linked and accessible.
+
+************************************************************************
+
+* Make installation as Directory.
+
+** Visit site for 'Drupal installation'
+*** Ensure no steps are required besides providing DB and user
+    details. Creation of settings file must be automatic.
+*** Set 'clean-urls' as Enabled (default).
+*** Visit status report to see if there are warnings: http://example.com/admin/reports/status
+
+** My Account
+*** Check account details are viewable and editable.
+*** Log out.
+*** Log in.
+*** Change user password (My account->Edit)
+*** Log out.
+*** Log in.
+
+** Create Content
+*** Create Page: set title, menu link and body.
+    Preview
+    Save
+    Ensure menu links appear and are usable on header.
+    Visit page. Make sure URLs are clean, such as http://example.com/node/2 (no ?q=xxxx).
+    Visit page with unlogged browser. Expect the same.
+*** Create Story: set title, menu link and body.
+    Preview
+    Save
+    Ensure menu links appear and are usable on header.
+    Visit page. Make sure URLs are clean, such as http://example.com/node/2 (no ?q=xxxx).
+    Visit page with unlogged browser. Expect the same.
+*** Add comment to story. Ensure it is possible.
+
+** Administer
+*** Content management
+    * Comments: Edit comment. Delete comment/Unpublish comment.
+    * Content: Filter contents. Edit existent story. Edit existent page.
+    * Content types: Check that types are modifiable.
+    * Post settings: Ensure node-settings are changed upon request.
+    * RSS publishing: Change RSS settings. Ensure correct generation at http://example.com/rss.xml
+    * Taxonomy: Create new vocabulary entry
+
+*** Site building
+    * Blocks: Change block order. Check results.
+    * Menus: Change menu disposition. Check results.
+    * Modules: Enable/disable modules. Check results.
+    * Themes: Change theme. Check results.
+
+*** Site configuration: Modify site settings. Check that changes are applied.
+*** User management: create new role and new user with the role. Grant creation permission. Logout. Login as new user. Create content.
+*** Reports: Check reports. None should issue a borken-warning.
+*** Help: Ensure help elements are correctly linked and accessible.
+
+
+
+
+PRO/ENTERPRISE:
+* Ensure multiple languages are available for installation
+* Ensure bundled modules are accessible through: /admin/build/modules
+http://localize.drupal.org/translate/downloads
+
+UPDATES
++++++++
+Search drush documentation. This is a Drupal Shell that should allow
+to perform any Drupal related task.
