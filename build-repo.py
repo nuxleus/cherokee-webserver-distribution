@@ -69,6 +69,13 @@ def initial_sanity_checks ():
                 errors = True
                 continue
 
+        for prop in ('modes', 'OS', 'DB'):
+            if dsc.installation.has_key (prop):
+                if not type(dsc.installation[prop]) in (tuple, list):
+                    print "ERROR: Package's %s installation.%s property should be a tuple" %(pkg, prop)
+                    errors = True
+                    continue
+
         if dsc.software['id'] != pkg:
             print "ERROR: Package %s has a %s ID" %(pkg, dsc.software['id'])
             errors = True
