@@ -55,7 +55,7 @@ software = {
 installation = {
   'modes': ('vserver', 'webdir'),
   'OS':    ('linux', 'macosx', 'freebsd'),
-  'DB':    ('mysql')
+  'DB':    ('mysql',)
 }
 
 maintainer = {

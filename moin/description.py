@@ -46,7 +46,7 @@ software = {
 }
 
 installation = {
-  'modes': ('vserver'),
+  'modes': ('vserver',),
   'OS':    ('linux', 'macosx', 'freebsd'),
   'DB':    ()
 }

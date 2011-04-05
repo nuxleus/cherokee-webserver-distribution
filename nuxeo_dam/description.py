@@ -56,7 +56,7 @@ software = {
 
 installation = {
   'modes': ('vserver', 'webdir'),
-  'OS':    ('linux'),
+  'OS':    ('linux',),
   'DB':    ('mysql', 'postgresql', 'builtin')
 }
 
