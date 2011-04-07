@@ -42,10 +42,13 @@ PACKAGE_PROPS = ('software', 'installation', 'maintainer')
 
 HELP = """\
 %s, a Cherokee Distribution building script
+Usage: %s [/path/to/repo] [--options]
 
 --help          Print this help
 --maintainers   Print a list of the maintainers of each package
-""" %(sys.argv[0])
+
+Report bugs to http://bugs.cherokee-project.com/\
+""" %(sys.argv[0], sys.argv[0])
 
 
 def figure_package_list():
@@ -264,8 +267,16 @@ def show_maintainers():
 
 
 if __name__ == "__main__":
+    # Check parameters
     if len(sys.argv) < 2:
-        print "%s /destination/path" %(sys.argv[0])
+        print HELP
+        raise SystemExit
+
+    if '--help' in sys.argv:
+        print HELP
+        raise SystemExit
+    elif '--maintainers' in sys.argv:
+        show_maintainers()
         raise SystemExit
 
     # Destination dir
@@ -273,14 +284,6 @@ if __name__ == "__main__":
 
     if not os.path.exists (dest_dir):
         os.makedirs (dest_dir)
-
-    # Check parameters
-    if '--help' in sys.argv:
-        print HELP
-        raise SystemExit
-    elif '--maintainers' in sys.argv:
-        show_maintainers()
-        raise SystemExit
 
     # Build the repository
     build_repo()
