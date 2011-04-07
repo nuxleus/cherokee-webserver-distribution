@@ -40,6 +40,13 @@ dest_dir = ''
 
 PACKAGE_PROPS = ('software', 'installation', 'maintainer')
 
+HELP = """\
+%s, a Cherokee Distribution building script
+
+--help          Print this help
+--maintainers   Print a list of the maintainers of each package
+""" %(sys.argv[0])
+
 
 def figure_package_list():
     pkgs = []
@@ -203,7 +210,7 @@ def copy_packages():
             raise SystemExit
 
 
-def main():
+def build_repo():
     global packages
 
     # Figure the package list
@@ -228,6 +235,34 @@ def main():
     copy_packages()
 
 
+def show_maintainers():
+    global packages
+
+    # Figure the package list
+    packages = figure_package_list()
+
+    # Sanity checks
+    initial_sanity_checks()
+
+    # Check orphans
+    maintainers = {}
+    for package in packages:
+        dsc_fp = os.path.join (package, 'description.py')
+        dsc    = imp.load_source (package, dsc_fp)
+
+        if dsc.maintainer['name']:
+            name = '%s <%s>' %(dsc.maintainer['name'], dsc.maintainer['email'])
+        else:
+            name = 'orphan'
+
+        maintainers[package] = name
+
+    # Print it
+    longest = max (len(x) for x in maintainers.keys())
+    for package in maintainers:
+        print package, ' '*(longest - len(package)), maintainers[package]
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print "%s /destination/path" %(sys.argv[0])
@@ -239,5 +274,13 @@ if __name__ == "__main__":
     if not os.path.exists (dest_dir):
         os.makedirs (dest_dir)
 
+    # Check parameters
+    if '--help' in sys.argv:
+        print HELP
+        raise SystemExit
+    elif '--maintainers' in sys.argv:
+        show_maintainers()
+        raise SystemExit
+
     # Build the repository
-    main()
+    build_repo()
