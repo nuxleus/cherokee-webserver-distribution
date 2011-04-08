@@ -203,7 +203,7 @@ def copy_packages():
         build_fp = os.path.join (pkg, 'build.py')
         build    = imp.load_source (pkg, build_fp)
 
-        package_filename = '%s-%s_%s.pkg' %(dsc.software['id'], dsc.software['version'], build.REVISION)
+        package_filename = '%s-%s_%s.%s' %(dsc.software['id'], dsc.software['version'], build.REVISION, config.PACKAGE_EXT)
         package_origin_fp = os.path.join (pkg, package_filename)
         package_target_fp = os.path.join (dest_dir, pkg, package_filename)
 

@@ -39,7 +39,7 @@ import subprocess
 import config
 
 BASEDIR = os.path.dirname (os.path.realpath (__file__))
-EXCLUDES = [r'common', r'download-cache', r'\.git', r'build.py.*', r'.*\.pkg']
+EXCLUDES = [r'common', r'download-cache', r'\.git', r'build.py.*', r'.*\.%s'%(config.PACKAGE_EXT)]
 
 EXIT_ERROR = 1
 EXIT_OK    = 0
