@@ -68,7 +68,7 @@ help.</p>
 software = {
  'id':          'sugar_ce',
  'name':        'Sugar CE',
- 'version':     '6.1.3',
+ 'version':     '6.1.4',
  'author':      'Sugar Community',
  'URL':         'http://wordpress.org/',
  'icon_small':  'sugar_x96.png',
